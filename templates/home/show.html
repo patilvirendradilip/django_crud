@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends "home/base.html" %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.css' %}">
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <title>Title</title>
+</head>
+<body>
+
+{%block form_block %}
+
+<!--{{data}}-->
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Student Id</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">Mobile Number</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Operation</th>
+        </tr>
+    </thead>
+
+    {% for d in data %}
+    <tbody>
+        <tr>
+            <th scope="row">{{d.id}}</th>
+            <td>{{d.name}}</td>
+            <td>{{d.email}}</td>
+            <td>{{d.mobile}}</td>
+            <td>{{d.dob}}</td>
+            <td>{{d.gender}}</td>
+            <td><a href="/student/update/{{d.id}}" class="btn btn-primary">Update</a> <a href="/student/delete/{{d.id}}" class="btn btn-danger">Delete</a> </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+<br>
+<br>
+<br>
+<div align="center"><a href="/student/sform" class="btn btn-success">Add Data</a></div>
+
+{% endblock %}
+
+</body>
+</html>
+
+
