@@ -2,10 +2,11 @@ from django.shortcuts import render
 from .forms import StudentForm
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import StudentModel
+from django.contrib.auth.decorators import login_required
 from django.db.models.query import QuerySet
 # Create your views here.
 
-
+@login_required
 def home_page(r):
     form = StudentForm()
     my_dict = {'form': form}
@@ -20,7 +21,7 @@ def home_page(r):
             return HttpResponse("<h1>Error  !!!!!</h1>")
     return render(r, 'home/index.html', context=my_dict)
 
-
+@login_required
 def show_page(r):
     data = StudentModel.objects.all()
     #data = StudentModel.objects.filter(id__exact=3) #| StudentModel.objects.filter(id__gt=4)
@@ -35,13 +36,13 @@ def show_page(r):
 def home(r):
     return render(r, 'home/home.html')
 
-
+@login_required
 def delete_page(r, id):
     data = StudentModel.objects.filter(id__exact=id)
     data.delete()
     return HttpResponseRedirect('/student/show')
 
-
+@login_required
 def update_page(r, id):
     data = StudentModel.objects.get(id=id)
     if r.method == 'POST':

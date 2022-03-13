@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends "home/base.html" %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <title>Title</title>
+</head>
+<body>
+{%block form_block %}
+<div align="center">
+    <h1 class="bg-primary text-white">This is Login Form</h1>
+    <form method="POST" >
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="submit" value="Submit" class="btn btn-success"/>
+    </form>
+
+</div>
+
+
+
+{% endblock %}
+</body>
+</html>
